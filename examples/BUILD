@@ -4,11 +4,7 @@ package(default_visibility = ["//visibility:public"])
 # for jsonnet rules.  The BUILD rules should not contain any jsonnet_to_json
 # rules as this is redundant with jsonnet_to_json_test rules.
 
-load(
-    "@io_bazel_rules_jsonnet//jsonnet:jsonnet.bzl",
-    "jsonnet_library",
-    "jsonnet_to_json_test",
-)
+load("@rules_jsonnet//jsonnet:jsonnet.bzl", "jsonnet_library", "jsonnet_to_json_test")
 
 jsonnet_library(
     name = "workflow",
@@ -143,10 +139,7 @@ jsonnet_to_json_test(
 
 filegroup(
     name = "test_str_files",
-    srcs = [
-        "WORKSPACE",
-        "file.txt",
-    ],
+    srcs = ["file.txt"],
 )
 
 filegroup(
@@ -166,10 +159,7 @@ jsonnet_to_json_test(
         "codefile2",
     ],
     ext_code_files = [":test_code_files"],
-    ext_str_file_vars = [
-        "0-workspace",
-        "1-test",
-    ],
+    ext_str_file_vars = ["1-test"],
     ext_str_files = [":test_str_files"],
     golden = "extvar_filegroup_golden.json",
 )
