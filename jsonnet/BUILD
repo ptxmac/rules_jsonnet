@@ -1,7 +1,12 @@
-load(":toolchain.bzl", "jsonnet_toolchain")
 load("@bazel_skylib//:bzl_library.bzl", "bzl_library")
+load("@rules_python//python:py_binary.bzl", "py_binary")
+load(":toolchain.bzl", "jsonnet_toolchain")
 
-exports_files(["docs.bzl", "jsonnet.bzl", "toolchain.bzl"])
+exports_files([
+    "docs.bzl",
+    "jsonnet.bzl",
+    "toolchain.bzl",
+])
 
 bzl_library(
     name = "bzl_srcs",
