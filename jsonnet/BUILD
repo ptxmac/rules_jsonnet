@@ -37,12 +37,6 @@ py_binary(
 
 toolchain_type(name = "toolchain_type")
 
-jsonnet_toolchain(
-    name = "rust_jsonnet",
-    compiler = "@crates//:jrsonnet__jrsonnet",
-    create_directory_flags = ["-c"],
-    manifest_file_support = False,
-)
 
 jsonnet_toolchain(
     name = "go_jsonnet",
@@ -58,12 +52,6 @@ jsonnet_toolchain(
     manifest_file_support = True,
 )
 
-toolchain(
-    name = "rust_jsonnet_toolchain",
-    toolchain = ":rust_jsonnet",
-    toolchain_type = ":toolchain_type",
-    visibility = ["//visibility:public"],
-)
 
 toolchain(
     name = "go_jsonnet_toolchain",
