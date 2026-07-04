@@ -7,7 +7,7 @@ bazel_dep(name = "bazel_skylib", version = "1.8.0")
 bazel_dep(name = "jsonnet", version = "0.21.0")
 bazel_dep(name = "jsonnet_go", version = "0.21.0")
 bazel_dep(name = "rules_python", version = "1.5.1")
-bazel_dep(name = "rules_rust", version = "0.62.0")
+bazel_dep(name = "rules_rust", version = "0.71.3")
 
 jsonnet = use_extension("//jsonnet:extensions.bzl", "jsonnet")
 use_repo(jsonnet, "rules_jsonnet_toolchain")
@@ -37,7 +37,7 @@ use_repo(rust, "rust_toolchains")
 
 register_toolchains("@rust_toolchains//:all")
 
-crate = use_extension("@rules_rust//crate_universe:extension.bzl", "crate")
+crate = use_extension("@rules_rust//crate_universe:extensions.bzl", "crate")
 crate.spec(
     # Binary artifacts can't be depended upon without specifically marking the
     # artifact as `bin`.
@@ -54,5 +54,6 @@ crate.annotation(
 crate.from_specs(
     name = "crates_jsonnet",
     host_tools = "@rust_host_tools_jsonnet",
+    lockfile = "//:cargo-bazel-lock.json",
 )
 use_repo(crate, "crates_jsonnet")
